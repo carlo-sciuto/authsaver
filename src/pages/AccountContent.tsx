@@ -23,9 +23,9 @@ const AccountContent = (props: Props) => {
           dispatch(
             accountActions.addCredentials({
               id: uuidv4(),
-              user: "dwqdwq",
-              pwd: "wqdd",
-              site: "dwqdwq",
+              user: "",
+              pwd: "",
+              site: "",
             })
           );
         }}
