@@ -17,8 +17,6 @@ import { PersistGate } from "redux-persist/integration/react";
 import App from "./App";
 import { account } from "./reducers/account.reducer";
 
-/* Creating a store and a rootReducer. */
-
 const rootReducer = combineReducers({
   accounts: account,
 });
