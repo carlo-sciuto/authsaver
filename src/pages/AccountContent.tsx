@@ -1,20 +1,22 @@
-import React, { useState, ChangeEvent, MouseEvent } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import React, { useState, ChangeEvent } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import * as accountActions from "../actions/account.actions";
-import { RootState } from "../main";
 import { v4 as uuidv4 } from "uuid";
+import { selectAccounts } from "../selectors/account.selectors";
+import { Auth } from "../reducers/account.reducer";
+import AccountRow from "../components/AccountRow";
 
 type Props = {};
 
 const AccountContent = (props: Props) => {
-  const [noteContent, setNoteContent] = useState("");
+  const [accountName, setAccountName] = useState("");
   const dispatch = useDispatch();
-  const accountSelect = useSelector((state: RootState) => state.accounts);
 
   const handleNoteContent = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    setNoteContent(e.target.value);
+    setAccountName(e.target.value);
   };
+
+  const accounts = useSelector(selectAccounts);
 
   return (
     <>
@@ -32,7 +34,11 @@ const AccountContent = (props: Props) => {
       >
         Add
       </button>
-      <div></div>
+      <div>
+        {accounts && accounts.length > 0
+          ? accounts.map((acc: Auth) => <AccountRow key={acc.id} auth={acc} />)
+          : "No accounts available"}
+      </div>
     </>
   );
 };
