@@ -16,6 +16,7 @@ import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
 import App from "./App";
 import { account } from "./reducers/account.reducer";
+import "./styles/Global.css";
 
 const rootReducer = combineReducers({
   accounts: account,

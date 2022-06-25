@@ -1,0 +1,30 @@
+.container {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.fixedBar {
+    width: 100%;
+    background: #0e2030;
+    
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .logoWrapper {
+            display: flex;
+            align-items: center;
+            .logo{
+                width: 3em;
+                height: auto;
+            }
+            
+            h1 {
+                font-size: 1.2em;
+                color: #ffffff;
+                padding-left: .5em;
+            }
+        }
+        
+    }
+}

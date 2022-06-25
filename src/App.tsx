@@ -1,10 +1,17 @@
 import React from "react";
-import AccountContent from "./pages/AccountContent";
+import "@fontsource/inter";
+import Topbar from "./skeleton/TopBar";
+import AccountContent from "./skeleton/AccountContent";
 
 function App() {
-  console.log(import.meta.env.VITE_SALT);
+  const [isDarkMode, setDarkMode] = React.useState(false);
+
+  const toggleDarkMode = (checked: boolean) => {
+    setDarkMode(checked);
+  };
   return (
     <>
+      <Topbar />
       <AccountContent />
     </>
   );
