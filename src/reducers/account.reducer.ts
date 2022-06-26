@@ -10,14 +10,7 @@ export interface Auth {
   site?: string;
 }
 
-const initialAuth: Array<object> = [
-  {
-    id: "Id",
-    user: "User",
-    pwd: "Password",
-    site: "URL Sites",
-  },
-];
+const initialAuth: Array<object> = [];
 
 export const account = createReducer(initialAuth, (builder) =>
   builder.addCase(addCredentials, (state: Array<Object>, action) => {

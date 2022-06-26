@@ -10,10 +10,10 @@ function App() {
     setDarkMode(checked);
   };
   return (
-    <>
+    <div className="min-h-screen bg-slate-700">
       <Topbar />
       <AccountContent />
-    </>
+    </div>
   );
 }
 
