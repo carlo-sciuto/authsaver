@@ -5,11 +5,6 @@ import AccountContent from "./skeleton/AccountContent";
 import { Toaster } from "react-hot-toast";
 
 function App() {
-  const [isDarkMode, setDarkMode] = React.useState(false);
-
-  const toggleDarkMode = (checked: boolean) => {
-    setDarkMode(checked);
-  };
   return (
     <div className="min-h-screen bg-slate-700">
       <Topbar />

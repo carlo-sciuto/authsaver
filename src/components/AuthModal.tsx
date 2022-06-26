@@ -1,6 +1,8 @@
 import React, { useState, FormEvent } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
+import * as account from "../actions/account.actions";
 
 type Props = {
   type: string;
@@ -11,13 +13,22 @@ type Props = {
 function AuthModal({ type, modalOpen, setModalOpen }: Props) {
   const dispatch = useDispatch();
   const [user, setUser] = useState("");
-  const [pass, setPass] = useState("");
+  const [pwd, setPass] = useState("");
   const [site, setSite] = useState("");
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    if (user === "" || pass === "" || site === "") {
+    if (user === "" || pwd === "" || site === "") {
       toast.error("All fields are required");
+    } else {
+      dispatch(
+        account.addCredentials({
+          id: uuidv4(),
+          user,
+          pwd,
+          site,
+        })
+      );
     }
   };
 
@@ -84,7 +95,7 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
                       id="password"
                       placeholder="••••••••"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                      value={pass}
+                      value={pwd}
                       onChange={(e) => setPass(e.target.value)}
                     />
                   </div>
