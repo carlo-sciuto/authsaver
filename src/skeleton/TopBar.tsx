@@ -1,8 +1,4 @@
 import React, { useState } from "react";
-import styles from "../styles/app.module.scss";
-import { useDispatch } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
-import * as accountActions from "../actions/account.actions";
 import NewAuth from "../components/NewAuth";
 import { AppContainer } from "../styles/styles";
 import AuthModal from "../components/AuthModal";

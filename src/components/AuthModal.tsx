@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, FormEvent } from "react";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 
 type Props = {
   type: string;
@@ -7,8 +9,20 @@ type Props = {
 };
 
 function AuthModal({ type, modalOpen, setModalOpen }: Props) {
+  const dispatch = useDispatch();
+  const [user, setUser] = useState("");
+  const [pass, setPass] = useState("");
+  const [site, setSite] = useState("");
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    if (user === "" || pass === "" || site === "") {
+      toast.error("All fields are required");
+    }
+  };
+
   return (
-    <div>
+    <>
       {modalOpen && (
         <div
           tabIndex={-1}
@@ -39,13 +53,13 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
                 <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
                   Add New Credentials
                 </h3>
-                <form className="space-y-6" action="#">
+                <form className="space-y-6" onSubmit={(e) => handleSubmit(e)}>
                   <div>
                     <label
                       htmlFor="email"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                     >
-                      Your email
+                      User / Email
                     </label>
                     <input
                       type="email"
@@ -53,7 +67,8 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
                       id="email"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                       placeholder="name@company.com"
-                      required
+                      value={user}
+                      onChange={(e) => setUser(e.target.value)}
                     />
                   </div>
                   <div>
@@ -61,7 +76,7 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
                       htmlFor="password"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                     >
-                      Your password
+                      Password
                     </label>
                     <input
                       type="password"
@@ -69,7 +84,8 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
                       id="password"
                       placeholder="••••••••"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                      required
+                      value={pass}
+                      onChange={(e) => setPass(e.target.value)}
                     />
                   </div>
                   <div>
@@ -85,7 +101,8 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
                       id="url"
                       placeholder="https://"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                      required
+                      value={site}
+                      onChange={(e) => setSite(e.target.value)}
                     />
                   </div>
 
@@ -101,7 +118,7 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
 

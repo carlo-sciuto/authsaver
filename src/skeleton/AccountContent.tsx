@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { selectAccounts } from "../selectors/account.selectors";
 import { Auth } from "../reducers/account.reducer";
