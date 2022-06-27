@@ -6,7 +6,7 @@ import { Auth } from "../reducers/account.reducer";
 
 type Props = {
   key?: string;
-  auth: any;
+  auth: Auth;
 };
 
 function Dropdown({ auth }: Props) {
@@ -65,7 +65,9 @@ function Dropdown({ auth }: Props) {
             <a
               href="#"
               className="block py-2 px-4 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-500 dark:text-gray-200 dark:hover:text-white"
-              onClick={() => dispatch(account.deleteCredentials(auth.id))}
+              onClick={() =>
+                dispatch(account.deleteCredentials(auth.id as string))
+              }
             >
               Delete
             </a>
