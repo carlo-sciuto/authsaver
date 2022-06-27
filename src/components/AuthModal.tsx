@@ -29,6 +29,7 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
           site,
         })
       );
+      setModalOpen(false);
     }
   };
 
@@ -38,9 +39,9 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
         <div
           tabIndex={-1}
           aria-hidden={!modalOpen}
-          className=" overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full"
+          className="min-h-screen overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full"
         >
-          <div className="relative p-4 w-full max-w-md h-full md:h-auto mx-auto">
+          <div className="relative top-24 p-4 w-full max-w-md h-full md:h-auto mx-auto">
             <div className="relative bg-white rounded-lg shadow dark:bg-gray-900">
               <button
                 type="button"
@@ -73,11 +74,9 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
                       User / Email
                     </label>
                     <input
-                      type="email"
-                      name="email"
-                      id="email"
+                      type="text"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                      placeholder="name@company.com"
+                      placeholder="user or user@email.com"
                       value={user}
                       onChange={(e) => setUser(e.target.value)}
                     />
@@ -91,8 +90,6 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
                     </label>
                     <input
                       type="password"
-                      name="password"
-                      id="password"
                       placeholder="••••••••"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                       value={pwd}
@@ -108,8 +105,6 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
                     </label>
                     <input
                       type="text"
-                      name="url"
-                      id="url"
                       placeholder="https://"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                       value={site}

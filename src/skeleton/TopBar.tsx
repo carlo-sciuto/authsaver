@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import NewAuth from "../components/NewAuth";
-import { AppContainer } from "../styles/styles";
+import { AppContainerBetween } from "../styles/styles";
 import AuthModal from "../components/AuthModal";
 
 type Props = {};
@@ -10,7 +10,7 @@ function TopBar({}: Props) {
 
   return (
     <section className="bg-white border-gray-200 px-7 sm:px-10 py-4 dark:bg-gray-800">
-      <div className={AppContainer}>
+      <div className={AppContainerBetween}>
         <div className="max-w-md flex items-center">
           <img
             src="logo.png"
@@ -19,7 +19,7 @@ function TopBar({}: Props) {
           />
           <h1 className="text-white font-bold text-xl uppercase">AuthSaver</h1>
         </div>
-        <NewAuth icon={true} onClick={() => setModalAuth(true)}>
+        <NewAuth icon={true} onClick={() => setModalAuth(!modalAuth)}>
           <span>New Auth</span>
         </NewAuth>
       </div>
