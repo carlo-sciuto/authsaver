@@ -38,6 +38,7 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
           site,
         })
       );
+      toast.success("Credentials added successfully");
       setModalOpen(false);
       resetFields();
     }

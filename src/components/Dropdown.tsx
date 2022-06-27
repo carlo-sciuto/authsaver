@@ -14,15 +14,8 @@ function Dropdown({ auth }: Props) {
   const [dropdown, setDropdown] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const clickOutsidehandler = (e: any) => {
-    //fix blink on click dotsDropdown
-    const outSideOfDots = e.path.some((node: any) => {
-      return node.id === "dotsDropdown";
-    });
-
-    if (!outSideOfDots) {
-      setDropdown(false);
-    }
+  const clickOutsidehandler = () => {
+    setDropdown(false);
   };
 
   useOnClickOutside(dropdownRef, clickOutsidehandler);
@@ -30,9 +23,8 @@ function Dropdown({ auth }: Props) {
   return (
     <div className="flex justify-end pt-4">
       <button
-        className="absolute right-3 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5"
+        className="dotsDropdown absolute right-3 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5"
         type="button"
-        id="dotsDropdown"
         onClick={() => setDropdown(!dropdown)}
       >
         <svg
@@ -57,6 +49,9 @@ function Dropdown({ auth }: Props) {
             <a
               href="#"
               className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-500 dark:text-gray-200 dark:hover:text-white"
+              onClick={() =>
+                dispatch(account.editCredentials(auth.id as string))
+              }
             >
               Edit
             </a>
