@@ -14,7 +14,7 @@ const AccountContent = (props: Props) => {
     <section className="bg-white border-gray-200 px-7 sm:px-10 py-4 dark:bg-gray-700">
       <div className={CardContainer} style={{ gap: "5%" }}>
         {accounts && accounts.length > 0 ? (
-          accounts.map((acc: Auth) => <AccountCard key={acc.id} auth={acc} />)
+          accounts.map((acc: any) => <AccountCard key={acc.id} auth={acc} />)
         ) : (
           <div className="bg-gray-500 dark:text-white text-gray-600 py-3 px-7 sm:px-10 rounded-md mx-auto mt-7">
             No accounts available

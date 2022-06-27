@@ -17,6 +17,13 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
   const [pwd, setPass] = useState("");
   const [site, setSite] = useState("");
 
+  const resetFields = () => {
+    setUser("");
+    setName("");
+    setPass("");
+    setSite("");
+  };
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (user === "" || pwd === "" || site === "") {
@@ -32,6 +39,7 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
         })
       );
       setModalOpen(false);
+      resetFields();
     }
   };
 
