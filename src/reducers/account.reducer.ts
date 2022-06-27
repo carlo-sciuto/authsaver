@@ -5,6 +5,7 @@ import { RootState } from "../main";
 
 export interface Auth {
   id?: string;
+  name?: string;
   user?: string;
   pwd?: string;
   site?: string;

@@ -13,6 +13,7 @@ type Props = {
 function AuthModal({ type, modalOpen, setModalOpen }: Props) {
   const dispatch = useDispatch();
   const [user, setUser] = useState("");
+  const [name, setName] = useState("");
   const [pwd, setPass] = useState("");
   const [site, setSite] = useState("");
 
@@ -24,6 +25,7 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
       dispatch(
         account.addCredentials({
           id: uuidv4(),
+          name,
           user,
           pwd,
           site,
@@ -68,6 +70,23 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
                 <form className="space-y-6" onSubmit={(e) => handleSubmit(e)}>
                   <div>
                     <label
+                      htmlFor="name"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                    >
+                      Website
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                      placeholder="Website Name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <label
                       htmlFor="email"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                     >
@@ -75,6 +94,8 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
                     </label>
                     <input
                       type="text"
+                      name="user"
+                      id="user"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                       placeholder="user or user@email.com"
                       value={user}
@@ -90,6 +111,8 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
                     </label>
                     <input
                       type="password"
+                      name="password"
+                      id="password"
                       placeholder="••••••••"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                       value={pwd}
@@ -98,13 +121,15 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
                   </div>
                   <div>
                     <label
-                      htmlFor="password"
+                      htmlFor="website"
                       className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                     >
-                      Website URL
+                      Login Page URL
                     </label>
                     <input
                       type="text"
+                      name="website"
+                      id="website"
                       placeholder="https://"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                       value={site}
