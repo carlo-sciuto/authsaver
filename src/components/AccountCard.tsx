@@ -9,7 +9,10 @@ type Props = {
 
 function AccountCard({ auth }: Props) {
   return (
-    <div className="relative max-w-sm w-full md:w-1/2 lg:w-1/3 mb-12 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+    <div
+      id={auth.id}
+      className="relative max-w-sm w-full md:w-1/2 lg:w-1/3 mb-12 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700"
+    >
       <Dropdown auth={auth} />
       <div className="flex flex-col items-center pb-10 pt-5 px-12">
         <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white pb-3">

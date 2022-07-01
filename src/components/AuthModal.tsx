@@ -1,16 +1,18 @@
 import React, { useState, FormEvent } from "react";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
+import { types } from "sass";
 import { v4 as uuidv4 } from "uuid";
 import * as account from "../actions/account.actions";
 
 type Props = {
   type: string;
+  id?: string;
   modalOpen: boolean;
   setModalOpen: (value: boolean) => void;
 };
 
-function AuthModal({ type, modalOpen, setModalOpen }: Props) {
+function AuthModal({ type, id, modalOpen, setModalOpen }: Props) {
   const dispatch = useDispatch();
   const [user, setUser] = useState("");
   const [name, setName] = useState("");
@@ -28,7 +30,7 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
     e.preventDefault();
     if (user === "" || pwd === "" || site === "") {
       toast.error("All fields are required");
-    } else {
+    } else if (type === "new") {
       dispatch(
         account.addCredentials({
           id: uuidv4(),
@@ -39,6 +41,19 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
         })
       );
       toast.success("Credentials added successfully");
+      setModalOpen(false);
+      resetFields();
+    } else if (type === "edit") {
+      dispatch(
+        account.editCredentials({
+          id,
+          name,
+          user,
+          pwd,
+          site,
+        })
+      );
+      toast.success("Credentials updated successfully");
       setModalOpen(false);
       resetFields();
     }
@@ -77,6 +92,9 @@ function AuthModal({ type, modalOpen, setModalOpen }: Props) {
                   Add New Credentials
                 </h3>
                 <form className="space-y-6" onSubmit={(e) => handleSubmit(e)}>
+                  {type === "edit" && (
+                    <input type="hidden" name="id" value={id} />
+                  )}
                   <div>
                     <label
                       htmlFor="name"
